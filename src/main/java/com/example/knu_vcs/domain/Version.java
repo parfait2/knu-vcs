@@ -18,8 +18,8 @@ public class Version {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idx", updatable = false)
-    private Long idx;
+    @Column(name = "id", updatable = false)
+    private Long id;
 
     @Column(name = "os", nullable = false)
     private String os;
@@ -37,7 +37,7 @@ public class Version {
     private String packageInfo;
 
     @CreatedDate
-    @Column(name = "regdate", nullable = false)
+    @Column(name = "regdate")
     private LocalDateTime regdate;
 
     @Builder
