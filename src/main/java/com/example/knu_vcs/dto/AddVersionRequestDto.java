@@ -15,8 +15,7 @@ public class AddVersionRequestDto {
     private int updatetype;
     private String message;
     private String packageInfo;
-
-
+    private boolean isDeleted;
 
     public Version toEntity() {
         return Version.builder()
@@ -25,6 +24,7 @@ public class AddVersionRequestDto {
                 .updatetype(updatetype)
                 .message(message)
                 .packageInfo(packageInfo)
+                .isDeleted(isDeleted)
                 .build();
     }
 }
