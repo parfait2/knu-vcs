@@ -44,4 +44,14 @@ public class VersionController {
                 .body(new VersionResponseDto(versionService.findById(id)));
     }
 
+      /**
+     * 삭제
+     */
+    @PutMapping("/vercontrol/deleteConfig/{id}")
+    public ResponseEntity<Version> updateArticle(@PathVariable("id") Long id) {
+        Version deletedVersion = versionService.delete(id);
+
+        return ResponseEntity.ok().body(deletedVersion);
+    }
+
 }
