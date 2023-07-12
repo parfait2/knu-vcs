@@ -4,12 +4,15 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@DynamicInsert
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
@@ -36,17 +39,27 @@ public class Version {
     @Column(name = "package", nullable = false)
     private String packageInfo;
 
+    @ColumnDefault("false")
+    @Column(name = "isDeleted")
+    private boolean isDeleted;
+
     @CreatedDate
     @Column(name = "regdate")
     private LocalDateTime regdate;
 
     @Builder
-    public Version(String os, String ver, int updatetype, String message, String packageInfo) {
+    public Version(String os, String ver, int updatetype, String message, String packageInfo, boolean isDeleted) {
         this.os = os;
         this.ver = ver;
         this.updatetype = updatetype;
         this.message = message;
         this.packageInfo = packageInfo;
+        this.isDeleted = isDeleted;
+
     }
 
+    // delete하는 기능을 명시한다.
+    public void delete(boolean deleted) {
+        this.isDeleted = deleted;
+    }
 }
