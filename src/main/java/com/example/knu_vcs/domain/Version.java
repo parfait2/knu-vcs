@@ -49,4 +49,10 @@ public class Version {
         this.packageInfo = packageInfo;
     }
 
+    public void update(String os, String ver, int updatetype, String message) {
+        this.os = os;
+        this.ver = ver;
+        this.updatetype = updatetype;
+        this.message = message;
+    }
 }

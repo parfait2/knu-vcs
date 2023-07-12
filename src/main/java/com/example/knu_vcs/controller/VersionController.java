@@ -2,6 +2,7 @@ package com.example.knu_vcs.controller;
 
 import com.example.knu_vcs.domain.Version;
 import com.example.knu_vcs.dto.AddVersionRequestDto;
+import com.example.knu_vcs.dto.UpdateVersionRequestDto;
 import com.example.knu_vcs.dto.VersionResponseDto;
 import com.example.knu_vcs.service.VersionService;
 import lombok.Getter;
@@ -42,6 +43,15 @@ public class VersionController {
     public ResponseEntity<VersionResponseDto> findVersion(@PathVariable("id") Long id) {
         return ResponseEntity.ok()
                 .body(new VersionResponseDto(versionService.findById(id)));
+    }
+
+
+    // update 기능
+    @PutMapping("/vercontrol/getConfig/{id}")
+    public ResponseEntity<Version> updateArticle(@PathVariable Long id,
+                                                 @RequestBody UpdateVersionRequestDto requestDto) {
+        Version updatedVersion = versionService.update(id, requestDto);
+        return ResponseEntity.ok().body(updatedVersion);
     }
 
 }
