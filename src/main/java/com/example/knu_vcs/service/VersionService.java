@@ -2,6 +2,7 @@ package com.example.knu_vcs.service;
 
 import com.example.knu_vcs.domain.Version;
 import com.example.knu_vcs.dto.AddVersionRequestDto;
+import com.example.knu_vcs.dto.UpdateVersionRequestDto;
 import com.example.knu_vcs.dto.VersionResponseDto;
 import com.example.knu_vcs.repository.VersionRepository;
 import lombok.RequiredArgsConstructor;
@@ -65,7 +66,19 @@ public class VersionService {
                 .orElseThrow(() -> new IllegalArgumentException("article not exist! : " + id));
 
         version.delete(true);
+        return version;
 
+    }
+
+
+    // update - 수정하는 코드 넣기
+    @Transactional
+    public Version update(Long id, UpdateVersionRequestDto requestDto) {
+        // step 1. 기존 등록된 글 가져오기
+        Version version = versionRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("article not exist! : " + id));
+        // step 2. 원하는 내용으로 수정
+        version.update(requestDto.getOs(), requestDto.getVer(), requestDto.getUpdatetype(), requestDto.getMessage());
         return version;
     }
 }

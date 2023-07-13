@@ -58,8 +58,13 @@ public class Version {
 
     }
 
-    // delete하는 기능을 명시한다.
     public void delete(boolean deleted) {
         this.isDeleted = deleted;
+    }
+    public void update(String os, String ver, int updatetype, String message) {
+        this.os = os;
+        this.ver = ver;
+        this.updatetype = updatetype;
+        this.message = message;
     }
 }
