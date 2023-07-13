@@ -48,6 +48,15 @@ public class VersionController {
                 .body(new VersionResponseDto(versionService.findById(id)));
     }
 
+      /**
+     * 삭제
+     */
+    @PutMapping("/vercontrol/deleteConfig/{id}")
+    public ResponseEntity<Version> updateArticle(@PathVariable("id") Long id) {
+        Version deletedVersion = versionService.delete(id);
+
+        return ResponseEntity.ok().body(deletedVersion);
+
 
     // update 기능
     @PutMapping("/vercontrol/getConfig/{id}")
@@ -55,6 +64,7 @@ public class VersionController {
                                                  @RequestBody UpdateVersionRequestDto requestDto) {
         Version updatedVersion = versionService.update(id, requestDto);
         return ResponseEntity.ok().body(updatedVersion);
+
     }
 
 }
