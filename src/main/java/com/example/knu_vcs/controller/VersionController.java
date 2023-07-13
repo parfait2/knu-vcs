@@ -41,6 +41,9 @@ public class VersionController {
 
     @GetMapping("/vercontrol/getConfig/{id}")
     public ResponseEntity<VersionResponseDto> findVersion(@PathVariable("id") Long id) {
+        System.out.println(id);
+        System.out.println(versionService.findById(id).getVer());
+        System.out.println(new VersionResponseDto(versionService.findById(id)).getVer());
         return ResponseEntity.ok()
                 .body(new VersionResponseDto(versionService.findById(id)));
     }
