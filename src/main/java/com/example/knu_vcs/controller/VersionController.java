@@ -56,6 +56,7 @@ public class VersionController {
         Version deletedVersion = versionService.delete(id);
 
         return ResponseEntity.ok().body(deletedVersion);
+    }
 
 
     // update 기능
