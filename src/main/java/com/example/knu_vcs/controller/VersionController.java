@@ -48,7 +48,7 @@ public class VersionController {
 
     // update 기능
     @PutMapping("/vercontrol/getConfig/{id}")
-    public ResponseEntity<Version> updateArticle(@PathVariable Long id,
+    public ResponseEntity<Version> updateArticle(@PathVariable("id") Long id,
                                                  @RequestBody UpdateVersionRequestDto requestDto) {
         Version updatedVersion = versionService.update(id, requestDto);
         return ResponseEntity.ok().body(updatedVersion);
