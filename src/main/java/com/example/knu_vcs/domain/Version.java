@@ -36,11 +36,11 @@ public class Version {
     @Column(name = "message")
     private String message;
 
-    @Column(name = "package", nullable = false)
+    @Column(name = "package_info", nullable = false)
     private String packageInfo;
 
     @ColumnDefault("false")
-    @Column(name = "isDeleted")
+    @Column(name = "is_deleted")
     private boolean isDeleted;
 
     @CreatedDate
@@ -58,8 +58,18 @@ public class Version {
 
     }
 
-    public void delete(boolean deleted) {
-        this.isDeleted = deleted;
+    @Builder
+    public Version(String os, String ver, int updatetype, String message, String packageInfo) {
+        this.os = os;
+        this.ver = ver;
+        this.updatetype = updatetype;
+        this.message = message;
+        this.packageInfo = packageInfo;
+
+    }
+
+    public void delete(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
     public void update(String os, String ver, int updatetype, String message) {
         this.os = os;
