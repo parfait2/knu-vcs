@@ -7,8 +7,6 @@ import com.example.knu_vcs.dto.VersionResponseDto;
 import com.example.knu_vcs.repository.VersionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,30 +18,10 @@ public class VersionService {
 
     private final VersionRepository versionRepository;
 
-    public List<Version> findAll() {
-        return versionRepository.findAll();
-    }
+    public List<Version> selectAll() {
 
-    /**
-     * 버전 정보 번호 조회
-     * */
-//    public Page<Long> findAll(Long id, int size, Long lastArticleId) {
-//        Pageable pageable = PageRequest.of(0, size);
-//        Page<Long> articleSeqs;
-//
-//        if (lastArticleId == null) {
-//            articleSeqs = versionRepository.findArticleSeqListInFeedFirst(id, pageable);
-//            return articleSeqs;
-//        }
-//        else {
-//            articleSeqs = versionRepository.findArticleSeqListInFeed(id, lastArticleId, pageable);
-//            return articleSeqs;
-//        }
-//
-//
-//
-//        return versionRepository.findAll();
-//    }
+        return versionRepository.selectAll();
+    }
 
     public Version findById(Long id) {
         return versionRepository.findById(id)
@@ -69,7 +47,6 @@ public class VersionService {
         return version;
 
     }
-
 
     // update - 수정하는 코드 넣기
     @Transactional
